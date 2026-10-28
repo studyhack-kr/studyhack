@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study hack | 같은 학원, 다른 성적</title>
+<meta name="description" content="국제 화학올림피아드 1위가 설계한 성적대별 공부법 시리즈. 서성한·SKY·Medical 진학 공부법.">
+<meta property="og:title" content="Study hack | 같은 학원, 다른 성적">
+<meta property="og:description" content="아이는 이미 충분히 열심히 하고 있습니다. 바뀌어야 할 것은 노력의 양이 아니라 방향입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 단일 칼럼 원페이지 — 남색 블록과 흰 블록이 번갈아 나오는 판매 페이지 */
+:root {
+  --navy: #0e2454;
+  --navy-2: #13306b;
+  --blue: #3e6fd8;
+  --marker: #b9cdf4;
+  --paper: #ffffff;
+  --mist: #f2f5fb;
+  --ink: #0e2454;
+  --muted: #4a5878;
+  --line: #dbe2ef;
+  --f-logo: "Archivo", "Arial Black", sans-serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.wrap {
+  max-width: 1040px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.logo { font-family: var(--f-logo); font-weight: 900; letter-spacing: -0.04em; white-space: nowrap; }
+.logo .h { margin-left: 0.28em; padding: 0 0.12em; background: linear-gradient(transparent 55%, var(--marker) 55%, var(--marker) 95%, transparent 95%); }
+.mark { padding: 0 0.12em; background: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 94%, transparent 94%); }
+h1, h2, h3 { margin: 0; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font-size: clamp(26px, 4.4vw, 38px); font-weight: 900; line-height: 1.3; }
+.eyebrow { font-family: var(--f-logo); font-weight: 800; font-size: 13px; letter-spacing: 0.18em; color: var(--blue); }
+section { padding-block: 88px; }
+@media (max-width: 640px) { section { padding-block: 64px; } }
+
+/* Header */
+header { position: sticky; top: 0; z-index: 10; background: #fff; color: var(--navy); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
+header .logo { font-size: 22px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 22px; border-radius: 6px; border: 0;
+  font: 700 16px/1 var(--f-body); text-decoration: none; cursor: pointer;
+  background: var(--blue); color: #fff;
+}
+.btn:hover { background: #2f5fc9; }
+.btn:focus-visible { outline: 3px solid var(--marker); outline-offset: 2px; }
+.btn.small { min-height: 40px; padding: 0 16px; font-size: 14px; }
+.btn.ghost { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn.ghost:hover { background: var(--navy); color: #fff; }
+
+/* Hero */
+.hero { background: #fff; color: var(--navy); padding-block: 96px 104px; border-bottom: 1px solid var(--line); }
+.hero h1 { font-size: clamp(38px, 7.5vw, 72px); font-weight: 900; line-height: 1.18; }
+.hero h1 .mark { background: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 94%, transparent 94%); }
+.hero p.lead { margin: 26px 0 0; font-size: clamp(17px, 2.4vw, 20px); color: var(--muted); max-width: 34em; }
+.hero .cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.hero .badge { font-size: 14px; color: var(--muted); }
+.hero .badge b { color: var(--navy); }
+
+/* Credentials */
+.creds { background: #fff; color: var(--navy); padding-block: 28px; border-bottom: 1px solid var(--line); overflow: hidden; }
+.creds .track { display: flex; width: max-content; animation: slide-right 32s linear infinite; }
+.creds:hover .track { animation-play-state: paused; }
+.creds ul { list-style: none; margin: 0; padding: 0; display: flex; flex-shrink: 0; }
+.creds li { display: flex; flex-direction: column; gap: 2px; white-space: nowrap; padding: 0 44px; border-right: 1px solid var(--line); }
+.creds strong { font-size: 17px; font-weight: 900; }
+@keyframes slide-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .creds .track { animation: none; } }
+.creds span { font-size: 13px; color: var(--muted); }
+
+/* Problem */
+.problem { border-bottom: 1px solid var(--line); }
+.problem .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+@media (max-width: 760px) { .problem .grid { grid-template-columns: 1fr; gap: 28px; } }
+.problem p { margin: 0 0 16px; color: var(--muted); font-size: 17px; }
+.problem p strong { color: var(--ink); }
+.compare { display: grid; gap: 12px; }
+.compare div { border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; }
+.compare h3 { font-size: 17px; margin-bottom: 6px; }
+.compare .bad h3 { color: var(--muted); }
+.compare .good { border-color: var(--navy); background: var(--mist); }
+.compare > div { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.compare > div:hover, .compare > div:active { transform: scale(1.03); box-shadow: 0 12px 28px rgba(14, 36, 84, 0.12); }
+@media (prefers-reduced-motion: reduce) { .compare > div { transition: none; } }
+.compare p { margin: 0; font-size: 15px; }
+
+/* Products */
+.products { background: #fff; border-bottom: 1px solid var(--line); }
+.products .head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+.draw-mark {
+  padding: 0 0.1em;
+  background-image: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 94%, transparent 94%);
+  background-repeat: no-repeat; background-size: 0% 100%;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  animation: draw-mark 4.5s ease-in-out infinite;
+}
+@keyframes draw-mark {
+  0% { background-size: 0% 100%; }
+  35% { background-size: 100% 100%; }
+  88% { background-size: 100% 100%; }
+  100% { background-size: 0% 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .draw-mark { animation: none; background-size: 100% 100%; } }
+.products .head p { margin: 0; color: var(--muted); font-size: 17px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; }
+.card.s2 { background: #fff; }
+.card.s3 { background: #fff; }
+.card .step { font-family: var(--f-logo); font-weight: 800; font-size: 13px; letter-spacing: 0.18em; color: var(--blue); }
+
+.card h3 { font-size: 24px; font-weight: 900; line-height: 1.3; }
+.card .range { font-size: 14px; font-weight: 700; color: var(--muted); }
+
+.card ul { margin: 0; padding: 0; list-style: none; font-size: 15px; display: grid; gap: 8px; }
+.card li { display: flex; gap: 10px; align-items: flex-start; }
+.card li::before {
+  content: ""; flex-shrink: 0; width: 18px; height: 18px; margin-top: 3px; border-radius: 4px;
+  background: var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4.5 9.5l3 3 6-7' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat;
+}
+.card, .bundle { transition: transform 0.18s ease, box-shadow 0.18s ease; cursor: pointer; }
+.card:hover, .card:active, .card:focus-visible,
+.bundle:hover, .bundle:active, .bundle:focus-within, .bundle:focus-visible {
+  transform: scale(1.03); box-shadow: 0 14px 34px rgba(14, 36, 84, 0.14); position: relative; z-index: 1;
+}
+.card:focus-visible, .bundle:focus-visible { outline: 3px solid var(--marker); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .card, .bundle { transition: none; } }
+.card .price { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+
+.card .price b { font-size: 24px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.card .price small { font-size: 13px; color: var(--muted); }
+
+
+.bundle { margin-top: 22px; background: #fff; color: var(--navy); border: 1px solid var(--line); border-radius: 12px; padding: 34px 32px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: center; }
+@media (max-width: 760px) { .bundle { grid-template-columns: 1fr; padding: 28px 22px; } }
+.bundle .tag { display: inline-block; font-size: 13px; font-weight: 700; background: var(--blue); color: #fff; padding: 4px 10px; border-radius: 4px; }
+.bundle h3 { margin-top: 12px; font-size: clamp(24px, 3.6vw, 32px); font-weight: 900; }
+.bundle p { margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+.bundle .pricebox { display: flex; flex-direction: column; gap: 6px; }
+.bundle .was { color: var(--muted); text-decoration: line-through; font-size: 16px; font-variant-numeric: tabular-nums; }
+.bundle .now { font-size: clamp(36px, 6vw, 48px); font-weight: 900; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.bundle .next { font-size: 14px; color: var(--muted); }
+.bundle .btn { margin-top: 12px; align-self: flex-start; }
+.rule { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+/* How to buy */
+#buy { border-bottom: 1px solid var(--line); }
+.steps { margin-top: 36px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: s; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+.steps li { list-style: none; border: 1px solid var(--line); border-radius: 10px; padding: 24px 22px; display: flex; flex-direction: column; gap: 8px; }
+.steps li::before { counter-increment: s; content: counter(s); font-family: var(--f-logo); font-weight: 900; font-size: 28px; color: var(--blue); line-height: 1; }
+.steps h3 { font-size: 18px; }
+.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+ol.steps { padding: 0; margin-bottom: 0; }
+.steps li, .account { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.steps li:hover, .steps li:active, .account:hover, .account:active {
+  transform: scale(1.03); box-shadow: 0 12px 28px rgba(14, 36, 84, 0.12); position: relative; z-index: 1;
+}
+@media (prefers-reduced-motion: reduce) { .steps li, .account { transition: none; } }
+.account { margin-top: 22px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+.account .acc { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.account .acc small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+.copy { min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1px solid var(--navy); background: #fff; color: var(--navy); font: 700 14px/1 var(--f-body); cursor: pointer; }
+.copy:focus-visible { outline: 3px solid var(--marker); outline-offset: 2px; }
+
+/* Policy & FAQ */
+.policy { background: #fff; border-bottom: 1px solid var(--line); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; gap: 40px; } }
+.two h2 { font-size: 26px; margin-bottom: 18px; }
+.policy ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 8px; }
+details { border-top: 1px solid var(--line); padding: 14px 0; }
+details:last-of-type { border-bottom: 1px solid var(--line); }
+summary { cursor: pointer; font-weight: 700; font-size: 16px; }
+summary:focus-visible { outline: 3px solid var(--marker); outline-offset: 2px; }
+details p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+
+/* Final CTA */
+.final { background: #fff; color: var(--navy); text-align: center; }
+.final p { margin: 18px auto 0; color: var(--muted); max-width: 32em; font-size: 17px; }
+.final .btn { margin-top: 30px; }
+
+footer { background: #fff; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; padding-block: 36px 48px; }
+footer .wrap { display: flex; flex-direction: column; gap: 10px; }
+footer .logo { color: var(--navy); font-size: 20px; }
+footer dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 2px 14px; }
+footer dd { margin: 0; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+  ✏️ 여기만 바꾸면 됩니다
+  1) FORM_URL : 구글 설문지 주소
+  2) BANK     : 입금 계좌 (은행 / 계좌번호 / 예금주)
+  3) 페이지 맨 아래 footer의 [ ] 표시 사업자 정보
+============================================================ -->
+<script>
+  window.STUDYHACK = {
+    FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSe2jbX4ZQpuNqTmOqdichuhyZKF_j7jPd3uTMVCiqVPkGBv8A/viewform",
+    BANK: { name: "[은행명]", number: "[계좌번호]", holder: "[예금주]" },
+    COHORT_DEADLINE: "[1기 마감일 또는 선착순 인원]"
+  };
+</script>
+
+<header>
+  <div class="wrap">
+    <div class="logo" aria-label="Study hack">Study<span class="h">hack</span></div>
+    <a class="btn small js-form" href="#buy">1기 신청</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">STUDY HACK SERIES · 1기 모집</div>
+      <h1 style="margin-top:18px">같은 학원,<br><span class="mark">다른 성적.</span></h1>
+      <p class="lead">아이는 이미 충분히 열심히 하고 있습니다. 바뀌어야 할 것은 노력의 양이 아니라 방향입니다. 국제 화학올림피아드 1위가 설계한 성적대별 공부법을 세 권에 담았습니다.</p>
+      <div class="cta-row">
+        <a class="btn js-form" href="#buy">1기 신청하기</a>
+        <span class="badge">전체 3권 <b>1기 한정 499,000원</b></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="creds">
+    <div class="track">
+      <ul aria-label="저자 이력">
+        <li><strong>국제 화학올림피아드 전체 1위</strong><span>2026 Tuymaada · 미세유체 문항 최고득점 특별상</span></li>
+        <li><strong>화학올림피아드 국가대표</strong><span>2025 IMChO</span></li>
+        <li><strong>미국 수학경시 상위 1%</strong><span>AMC Honor Roll of Distinction</span></li>
+        <li><strong>TOEFL iBT</strong><span>Reading 25 · Listening 26</span></li>
+      </ul>
+      <ul aria-hidden="true">
+        <li><strong>국제 화학올림피아드 전체 1위</strong><span>2026 Tuymaada · 미세유체 문항 최고득점 특별상</span></li>
+        <li><strong>화학올림피아드 국가대표</strong><span>2025 IMChO</span></li>
+        <li><strong>미국 수학경시 상위 1%</strong><span>AMC Honor Roll of Distinction</span></li>
+        <li><strong>TOEFL iBT</strong><span>Reading 25 · Listening 26</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="problem">
+    <div class="wrap grid">
+      <div>
+        <div class="eyebrow">WHY</div>
+        <h2 style="margin-top:12px">성적이 안 오르는 건<br>아이 머리 탓이 아닙니다</h2>
+      </div>
+      <div>
+        <p>대부분의 학생이 성적이 정체되는 이유는 학습량 부족이 아니라, <strong>입력(Input) 위주의 학습</strong>에 머물러 있기 때문입니다. 인지심리학에서는 이를 <strong>'유창성 착각'</strong>이라고 부릅니다. 여러 번 읽어 익숙해진 것을 안다고 착각하는 현상입니다.</p>
+        <p>Study hack은 이 착각을 깨는 데서 시작합니다.</p>
+        <div class="compare">
+          <div class="bad"><h3>넣는 공부</h3><p>듣고, 읽고, 밑줄 긋고, 다시 읽기. 학원 개수를 늘리기.</p></div>
+          <div class="good"><h3>꺼내는 공부</h3><p>책을 덮고 스스로 떠올리기. 막히는 곳이 바로 진짜 모르는 곳입니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">THE SERIES</div>
+        <h2><span class="draw-mark">성적이 오르면, 다음 단계가 필요해집니다</span></h2>
+        <p>세 권은 하나의 로드맵입니다. 과목별 공부법과 기억술이 권마다 한 단계씩 깊어집니다.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card" tabindex="0">
+          <div class="step">STEP 01</div>
+          <h3>서성한 진학 공부법</h3>
+          <div class="range">3등급 이하 → 2등급</div>
+          <ul>
+            <li>넣는 공부 VS 꺼내는 공부</li>
+            <li>형광펜 긋기와 10회독 암기법의 단점</li>
+            <li>4당5락은 틀렸다</li>
+            <li>학부모로서 좋은 학원을 고르는 방법</li>
+            <li>암기를 하는데 까먹는 이유</li>
+          </ul>
+          <div class="price"><b>249,000원</b><small>누구나 구매 가능</small></div>
+        </article>
+
+        <article class="card s2" tabindex="0">
+          <div class="step">STEP 02</div>
+          <h3>SKY 진학 공부법</h3>
+          <div class="range">2등급 → 1등급</div>
+          <ul>
+            <li>기억의 궁전 심화 응용법</li>
+            <li>바둑판 암기법</li>
+            <li>한 번 보고 외우는 방법</li>
+            <li><span>국어 비문학의 7개 유형을 알면<br>문제 질문이 보인다</span></li>
+          </ul>
+          <div class="price"><b>249,000원</b><small>STEP 1 구매자 대상</small></div>
+        </article>
+
+        <article class="card s3" tabindex="0">
+          <div class="step">STEP 03</div>
+          <h3>Medical 진학 공부법</h3>
+          <div class="range">1등급 안에서 한 문제를 줄이는 법</div>
+          <ul>
+            <li>3분에 20개 영어 단어 외우기</li>
+            <li>숫자 이미지 글자 연관성</li>
+            <li>암기는 창의성이 필요하다</li>
+            <li>장면 암기법</li>
+            <li>발표문과 동작 수행평가 외우는 방법</li>
+            <li>하루 14시간 공부하기</li>
+          </ul>
+          <div class="price"><b>249,000원</b><small>STEP 2 구매자 대상</small></div>
+        </article>
+      </div>
+
+      <div class="bundle">
+        <div>
+          <span class="tag">추천 · 1기 한정</span>
+          <h3>전체 로드맵 STEP 1~3</h3>
+          <p>세 권을 한 번에. 아이의 현재 성적과 상관없이 다음 단계까지 미리 준비할 수 있습니다.</p>
+        </div>
+        <div class="pricebox">
+          <span class="was">낱권 합계 747,000원</span>
+          <span class="now">499,000원</span>
+          <a class="btn js-form" href="#buy">1기 신청하기</a>
+        </div>
+      </div>
+      <p class="rule">낱권은 STEP 1부터 순서대로만 구매할 수 있습니다. 모든 PDF에는 구매자 이름이 표기됩니다.</p>
+    </div>
+  </section>
+
+  <section id="buy">
+    <div class="wrap">
+      <div class="eyebrow">HOW TO BUY</div>
+      <h2 style="margin-top:12px">구매 방법</h2>
+      <ol class="steps">
+        <li><h3>신청서 작성</h3><p>아래 버튼으로 신청서를 작성해 주세요. 구매할 상품과 받으실 이메일을 적습니다.</p></li>
+        <li><h3>계좌 입금</h3><p>신청서에 적은 <b>신청자 이름과 같은 이름</b>으로 신청서에 안내된 계좌에 입금해 주세요.</p></li>
+        <li><h3>PDF 수령</h3><p>입금 확인 후 영업일 기준 1일 이내에 구매자 이름이 표기된 PDF를 이메일로 보내드립니다.</p></li>
+      </ol>
+      <div style="margin-top:28px; display:flex; flex-wrap:wrap; gap:12px">
+        <a class="btn js-form" href="#buy" target="_blank" rel="noopener">신청서 작성하기</a>
+        <a class="btn ghost" href="#products">상품 다시 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy">
+    <div class="wrap two">
+      <div>
+        <h2>환불 및 이용 안내</h2>
+        <ul>
+          <li>PDF 발송 전에는 전액 환불됩니다.</li>
+          <li>PDF는 디지털 콘텐츠로, 발송(다운로드 가능 상태) 이후에는 전자상거래법에 따라 청약철회가 제한됩니다.</li>
+          <li>파일 오류나 누락이 있으면 확인 즉시 다시 보내드립니다.</li>
+          <li>모든 PDF에는 구매자 이름이 표기되며, 무단 복제·공유·재판매는 저작권법에 따라 금지됩니다.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>자주 묻는 질문</h2>
+        <details><summary>책은 언제 받을 수 있나요?</summary><p>입금 확인 후 영업일 기준 1일 이내에 이메일로 보내드립니다. 출간 전 신청하신 경우 출간일에 일괄 발송됩니다.</p></details>
+        <details><summary>왜 순서대로만 살 수 있나요?</summary><p>세 권은 이전 단계의 방법을 전제로 쓰였습니다. 앞 단계를 건너뛰면 다음 단계의 방법이 제대로 작동하지 않습니다.</p></details>
+        <details><summary>아이가 이미 1등급이에요. STEP 3만 필요한가요?</summary><p>STEP 3는 STEP 1·2의 방법 위에 쌓는 내용입니다. 전체 로드맵으로 신청하시면 낱권보다 248,000원 저렴합니다.</p></details>
+        <details><summary>학생이 직접 읽어도 되나요?</summary><p>네. 학생과 학부모가 함께 읽도록 썼습니다. 학부모님을 위한 장이 권마다 따로 있습니다.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>전국의 학부모님,<br>이것이 자녀의 대학 간판을 바꿀 수 있는 기회입니다.</h2>
+      <p>학원을 하나 더 늘리기 전에, 공부 방식부터 바꿔보십시오.</p>
+      <a class="btn js-form" href="#buy" target="_blank" rel="noopener">1기 신청하기</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">Study<span class="h">hack</span></div>
+    <dl>
+      <dt>상호</dt><dd></dd>
+      <dt>대표자</dt><dd></dd>
+      <dt>사업자등록번호</dt><dd></dd>
+      <dt>통신판매업 신고</dt><dd></dd>
+      <dt>문의</dt><dd>Threads @study_hack26</dd>
+    </dl>
+    <div>© 2026 Study hack. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var C = window.STUDYHACK;
+  document.querySelectorAll('.js-form').forEach(function (a) {
+    a.href = C.FORM_URL; a.target = '_blank'; a.rel = 'noopener';
+  });
+  document.querySelectorAll('.js-deadline').forEach(function (el) {
+    el.textContent = '마감: ' + C.COHORT_DEADLINE;
+  });
+})();
+</script>
+</body>
+</html>
